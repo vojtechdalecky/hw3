@@ -37,8 +37,8 @@ class DutchTest extends FunSuite with Matchers {
     val pairing = dutch(competitors = competitorsBlank, groupSize = 4, randomSeed = Some(seed))
 
     pairing shouldBe Set(
-      (Competitor("Boleslaus I the Cruel", None), Competitor("Boleslaus II the Pious", None)),
-      (Competitor("Boleslaus IV", None), Competitor("Boleslaus III the Red-haired", None))
+      (Competitor("Boleslaus I the Cruel", None), Some(Competitor("Boleslaus II the Pious", None))),
+      (Competitor("Boleslaus IV", None), Some(Competitor("Boleslaus III the Red-haired", None)))
     )
   }
 
