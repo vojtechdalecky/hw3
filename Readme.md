@@ -154,7 +154,7 @@ Find more information on constructing Gray codes here: https://en.wikipedia.org/
 
 Implement a function that generates gray codes for a given number of bits:
 
-```
+``` scala
   def gray(bits: Int): List[String] = ???
 ```
 
