@@ -159,3 +159,36 @@ Implement the following method:
   def dutch(competitors: List[Competitor], groupSize: Int, randomSeed: Option[Int] = None): Set[(Competitor, Option[Competitor])] = ???
 ```
 
+## Gray code
+
+The reflected binary code is a way fo sequencing numbers invented by Grank Gray which orders binary numbers so that 
+every two successive values differ by only one bit. It has applications in electronics.
+
+For instance, the numbers 2 and 3 differ by 1 bit, but 1 and 2 differ by 2 bits, and 3 and 4 normally differ by 3 bits: 
+
+```
+0: 0000
+1: 0001
+2: 0010
+3: 0011
+4: 0100   
+```
+
+In gray code the numbers are constructed as follows:
+
+```
+0: 0000
+1: 0001
+2: 0011
+3: 0010
+4: 0110
+```
+
+Find more information on constructing Gray codes here: https://en.wikipedia.org/wiki/Gray_code#Constructing_an_n-bit_Gray_code
+
+Implement a function that generates gray codes for a given number of bits:
+
+```
+  def gray(bits: Int): List[String] = ???
+```
+
