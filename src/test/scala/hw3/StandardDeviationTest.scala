@@ -13,7 +13,7 @@ class StandardDeviationTest extends FunSuite with Matchers {
      * avg:    139.55/9 = 15.51
      * stddev: sqrt(15.51) = 3.94
      */
-    standardDeviation(List(4, 9, 11, 12, 17, 5, 8, 12, 14)) shouldBe 3.94
+    standardDeviation(List(4, 9, 11, 12, 17, 5, 8, 12, 14)) shouldBe 3.9377878103709665
   }
   test("stddev singleton example")     {
     /**
