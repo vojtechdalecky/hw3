@@ -3,7 +3,7 @@ package hw3
 object Main {
   def standardDeviation(vector: List[Double]): Double = ???
 
-  def letterFrequencyRanking(corpus: List[String]): String = ???
+  def letterFrequencyRanking(corpus: String): String = ???
 
   def romanji(katakana: String): String = ???
 

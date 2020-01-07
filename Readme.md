@@ -10,7 +10,7 @@ def standardDeviation(vector: List[Double]): Double = ???
 
 Calculate the letter frequency in a corpus and return its letter frequency ranking. 
 
-The corpus is a collection of strings representing different texts.
+The corpus is a string representing some text in some language
 
 The letter frequency ranking is a string of letters. A letter is a member of a frequency ranking if, and only if, it can 
 be found in the corpus. the letters are sorted according to how often they occur in the corpus. The leftmost letter in 
