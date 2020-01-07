@@ -125,43 +125,9 @@ Implement the following function that translated katakana to romanji:
   def romanji(katakana: String): String = ???
 ```
 
-## Tournament pairing system
-
-Non-eliminating tournaments feature a certain (small) number of rounds. Each competitor plays head-to-head with another
-competitor in each round. Who plays with whom is selected according to a set of rules. These rules match players with 
-similar scores form previous. These systems are used in chess, go, scrabble, bridge, and many other games.
-
-Implement a function that pairs competitors in a round of the tournament in accordance with the Dutch system.
-
-In first round of the the Dutch system players are paired randomly. Use a seed to be able to test the result. 
-
-In the following rounds players are divided into 
-some number of groups according to their score in the previous round. Players are groupped into scoring groups. The 
-highest scoring competitors are all in one group, etc. Each group contains an even number of competitors. The lowest 
-scoring group can be a different size than the previous groups.
-
-The top half of each group is paired with the bottom half of each gorup. For the sake of example let's assume each group
-contains 8 competitors. The competitor with the highest score in group plays the competitor with fifth-highest score in
-group. The competitor with the second-highest score in group plays the competitor with the sixth-highest score in group. 
-Etc.
-
-If the number of competitors is odd, exactly one competitor is not paired up with anyone.
-
-Each competitor is described by the following class: 
-
-``` scala
-  case class Competitor(val name: String, val scoreInPreviousRound: Option[Int])
-```
-
-Implement the following method:
-
-``` scala
-  def dutch(competitors: List[Competitor], groupSize: Int, randomSeed: Option[Int] = None): Set[(Competitor, Option[Competitor])] = ???
-```
-
 ## Gray code
 
-The reflected binary code is a way fo sequencing numbers invented by Grank Gray which orders binary numbers so that 
+The reflected binary code is a way of sequencing numbers invented by Frank Gray which orders binary numbers so that 
 every two successive values differ by only one bit. It has applications in electronics.
 
 For instance, the numbers 2 and 3 differ by 1 bit, but 1 and 2 differ by 2 bits, and 3 and 4 normally differ by 3 bits: 

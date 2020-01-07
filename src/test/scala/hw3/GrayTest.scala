@@ -14,6 +14,6 @@ class GrayTest extends FunSuite with Matchers {
   }
 
   test("Gray example 3 bits") {
-    gray(3) shouldBe List("000", "010", "110", "111", "101", "100")
+    gray(3) shouldBe List("000", "001", "011", "010", "110", "111", "101", "100")
   }
 }
