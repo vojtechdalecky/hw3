@@ -9,4 +9,6 @@ object Main {
 
   case class Competitor(val name: String, val scoreInPreviousRound: Option[Int])
   def dutch(competitors: List[Competitor], groupSize: Int, randomSeed: Option[Int] = None): Set[(Competitor, Option[Competitor])] = ???
+
+  def gray(bits: Int): List[String] = ???
 }
