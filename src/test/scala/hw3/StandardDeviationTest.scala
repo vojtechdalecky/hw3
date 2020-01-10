@@ -19,7 +19,7 @@ class StandardDeviationTest extends FunSuite with Matchers {
     /**
      * x	                  42
      * (x - avg(x))^2        0
-     * stddev: sqrt(15.51) = 0
+     * stddev: sqrt(0) = 0
      */
     standardDeviation(List(42)) shouldBe 0.0
   }

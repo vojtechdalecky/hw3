@@ -34,7 +34,7 @@ seiracmnpty
 Implement this calculation as the following function:
 
 ``` scala 
-def letterFrequencyRanking(corpus: List[String]): String = ???
+def letterFrequencyRanking(corpus: String): String = ???
 ```
 
 ## Katakana to romanji
