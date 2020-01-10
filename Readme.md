@@ -108,8 +108,8 @@ Symbol ッ doubles the following consonant:
 Symbol ン doubles the following consonant in the case of na, ni, nu, ne, no syllables:
 
 ```
-ニノ   nano
-ニンノ nanno
+ナノ   nano
+ナンノ nanno
 ```
 
 Symbol ー lengthens the preceding vowel. A long vowel is written with a line over it. For instance ē represents long e.
