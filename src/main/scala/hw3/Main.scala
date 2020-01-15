@@ -1,13 +1,112 @@
 package hw3
 
+import scala.math.sqrt
+import scala.math.pow
+import util.control.Breaks._
+
 object Main {
-  def standardDeviation(vector: List[Double]): Double = ???
+  def standardDeviation(vector: List[Double]): Double = {
 
-  def letterFrequencyRanking(corpus: String): String = ???
+    var vecSum: Double = 0.0
 
-  def romanji(katakana: String): String = ???
+    vector.foreach( x => vecSum += x)
 
-  def gray(bits: Int): List[String] = ???
+    val avg: Double = vecSum / vector.size
+
+    var sum: Double = 0.0
+
+    vector.foreach(x => sum += pow(x - avg, 2) )
+
+    sqrt(sum/vector.size)
+
+  }
+
+  def letterFrequencyRanking(corpus: String): String = {
+
+    val lcCorpus = corpus.toLowerCase().replaceAll("[^a-z]","")
+
+    val map = scala.collection.mutable.Map[Char, Int]()
+
+    lcCorpus.foreach(x => {
+      if(map.contains(x)) map(x) = map(x) + 1
+      else map(x) = 1
+    })
+
+    var result: String = ""
+
+    map.toSeq.sortBy(l => (-l._2, l._1)).foreach(c => {
+      result += c._1
+    })
+
+    result
+
+  }
+
+  def romanji(katakana: String): String = {
+
+    var romanji:String = ""
+
+    var it:Int = 0
+    for (c: Char <- katakana.toCharArray){
+      breakable {
+        if (Katakana.symbols.contains(c)) {
+          Katakana.symbols(c).foreach(t => romanji += t)
+          break
+        }
+
+        c match {
+          case 'ャ' => {
+            romanji = romanji.substring(0,romanji.length -1) + "ya"
+            break
+          }
+          case 'ュ' => {
+            romanji = romanji.substring(0,romanji.length -1) + "yu"
+            break
+          }
+          case 'ョ' => {
+            romanji = romanji.substring(0,romanji.length -1) + "yo"
+            break
+          }
+          case default =>
+        }
+
+        if (c == 'ッ') {
+          romanji += Katakana.symbols(katakana(it + 1)).head
+          break
+        }
+
+        if (c == 'ン') {
+          romanji += Katakana.symbols(katakana(it + 1)).head
+          break
+        }
+
+        if (c == 'ー') {
+          val lc: Char = romanji.takeRight(1).toCharArray.head
+          romanji = romanji.substring(0,romanji.length -1)
+          romanji += Katakana.longVowels(lc)
+          break()
+        }
+      }
+
+      it += 1
+    }
+
+  romanji
+  }
+
+  def gray(bits: Int): List[String] = {
+
+    var combinations: List[String] = List("0", "1")
+
+    if(bits != 1){
+      val org = gray(bits-1)
+      val rev = org.reverse
+      combinations = org.map("0" + _) ::: rev.map("1" + _)
+    }
+
+    combinations
+
+  }
 }
 
 object Katakana {
