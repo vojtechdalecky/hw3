@@ -1,5 +1,6 @@
 package hw3
 
+import scala.collection.mutable.ListBuffer
 import scala.math.sqrt
 import scala.math.pow
 import util.control.Breaks._
@@ -107,6 +108,78 @@ object Main {
     combinations
 
   }
+
+  def infixToRPN(expression: List[Lexeme]): List[Lexeme] = {
+
+    val operators: ListBuffer[Lexeme] = new ListBuffer[Lexeme]()
+    val result: ListBuffer[Lexeme] = new ListBuffer[Lexeme]()
+
+    expression.foreach(x => {
+
+     val opType: String = x.getClass.getSimpleName
+
+     if(opType == "Operand") result += x
+     else {
+
+         if (operators.nonEmpty) {
+
+           breakable {
+             while (operators.nonEmpty) {
+
+               if (((getOperatorInfo(x)._2 == "L") && (getOperatorInfo(x)._1 <= getOperatorInfo(operators.last)._1)) ||
+                 ((getOperatorInfo(x)._2 == "R") && (getOperatorInfo(x)._1 < getOperatorInfo(operators.last)._1))) {
+                 result += operators.last
+                 operators.remove(operators.length - 1)
+               } else break()
+             }
+           }
+         }
+         operators += x
+
+     }
+
+    })
+
+  operators.reverse.foreach(x => result += x)
+
+  result.foreach(x=>{
+
+    if(x.getClass.getSimpleName == "Operator"){
+      val Operator(operatorVal) = x
+      print(operatorVal)
+    }else{
+      val Operand(operandVal) = x
+      print(operandVal)
+    }
+
+  })
+
+  println()
+
+  result.toList
+  }
+
+  def getOperatorInfo(operator: Lexeme): (Int, String) ={
+
+    val Operator(x) = operator
+
+    x match {
+     case "^" => (4,"R")
+     case "*" => (3, "L")
+     case "/" => (3, "L")
+     case "+" => (2, "L")
+     case "-" => (2, "L")
+     case default => (0,"")
+    }
+  }
+
+  abstract class Lexeme
+
+  case class Operator(symbol: String) extends Lexeme
+
+  case class Operand(value: Int) extends Lexeme
+
+
 }
 
 object Katakana {
