@@ -113,13 +113,20 @@ object Main {
 
     val operators: ListBuffer[Lexeme] = new ListBuffer[Lexeme]()
     val result: ListBuffer[Lexeme] = new ListBuffer[Lexeme]()
+    var operatorSwitch: Boolean = true
 
     expression.foreach(x => {
 
      val opType: String = x.getClass.getSimpleName
 
-     if(opType == "Operand") result += x
+     if(opType == "Operand"){
+       operatorSwitch = false
+       result += x
+     }
      else {
+
+         if(operatorSwitch) throw new IllegalArgumentException
+         operatorSwitch = true
 
          if (operators.nonEmpty) {
 
@@ -140,23 +147,29 @@ object Main {
 
     })
 
+    if(operatorSwitch && expression.nonEmpty) throw new IllegalArgumentException
+
   operators.reverse.foreach(x => result += x)
 
-  result.foreach(x=>{
-
-    if(x.getClass.getSimpleName == "Operator"){
-      val Operator(operatorVal) = x
-      print(operatorVal)
-    }else{
-      val Operand(operandVal) = x
-      print(operandVal)
-    }
-
-  })
-
-  println()
+  //printResult(result)
 
   result.toList
+  }
+
+  def printResult(result: ListBuffer[Lexeme]): Unit = {
+    result.foreach(x=>{
+
+      if(x.getClass.getSimpleName == "Operator"){
+        val Operator(operatorVal) = x
+        print(operatorVal)
+      }else{
+        val Operand(operandVal) = x
+        print(operandVal)
+      }
+
+    })
+
+    println()
   }
 
   def getOperatorInfo(operator: Lexeme): (Int, String) ={
@@ -169,7 +182,7 @@ object Main {
      case "/" => (3, "L")
      case "+" => (2, "L")
      case "-" => (2, "L")
-     case default => (0,"")
+     case default => throw new IllegalArgumentException
     }
   }
 
